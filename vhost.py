@@ -47,10 +47,10 @@ def purge():
     save_rules(rules)
 
 @click.command()
-@click.argument("ip")
 @click.argument("domain")
+@click.argument("ip")
 @click.option("--www/--no-www", default=False, help="Adds a second rule that prepends 'www.' to the given domain")
-def add(ip, domain, www):
+def add(domain, ip, www):
     """Add a rule to the hosts file"""
     rules = load_rules()
     add_rule(rules, ip, domain)
