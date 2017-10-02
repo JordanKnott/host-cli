@@ -6,6 +6,8 @@ found in the Window's host file.
 Useful for developing sites locally that need an IP address. Just use the
 ```add``` command to map a local IP address to a domain.
 
+![screenshot](https://github.com/jordanknott/host-cli/raw/master/www/screenshot.png "Screenshot")
+
 # Installation & Requirements #
 
 Requires Python 3.6+ (Untested on older versions)
