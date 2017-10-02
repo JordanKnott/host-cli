@@ -31,6 +31,7 @@ def add_rule(rules, ip, domain):
     return rules
 
 
+
 @click.group()
 def rules():
     """Command line utility script to add/remove/view DNS rules in the hosts file"""
@@ -40,13 +41,10 @@ def rules():
 @click.command()
 @click.argument("ip")
 @click.argument("domain")
-@click.option("--www/--no-www", default=False, help="Adds a second rule that prepends 'www.' to the given domain")
-def add(ip, domain, www):
+def add(ip, domain):
     """Add a rule to the hosts file"""
     rules = load_rules()
     add_rule(rules, ip, domain)
-    if www:
-        add_rule(rules, ip, "www." + domain)
     save_rules(rules)
     
 
