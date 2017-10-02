@@ -38,6 +38,15 @@ def rules():
 
 
 @click.command()
+def purge():
+    """Purges all rules from the host file. Use with caution."""
+    rules = load_rules()
+    for rule in rules:
+        print("Purging {} - {}".format(rule['ip'], rule['domain']))
+    rules = []
+    save_rules(rules)
+
+@click.command()
 @click.argument("ip")
 @click.argument("domain")
 @click.option("--www/--no-www", default=False, help="Adds a second rule that prepends 'www.' to the given domain")
@@ -77,6 +86,7 @@ def list_rules():
 rules.add_command(add)
 rules.add_command(remove)
 rules.add_command(list_rules)
+rules.add_command(purge)
 
 if __name__ == "__main__":
     rules()
