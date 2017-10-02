@@ -65,13 +65,20 @@ def flush_dns():
 
 @click.command()
 @click.argument("domain")
-def remove(domain):
+@click.option("--www/--no-www", default=False, help="Remove a 'www' version of the domain, if it exists")
+def remove(domain, www):
     """Remove a rule in the hosts file that has the given domain"""
     rules = load_rules()
+    slated_for_removal = []
     for rule in rules:
         if rule['domain'] == domain:
             print("Removing {} - {}".format(rule['ip'], rule['domain']))
-            rules.remove(rule)
+            slated_for_removal.append(rule)
+        if www and rule['domain'] == "www." + domain:
+            print("Removing {} - {}".format(rule['ip'], rule['domain']))
+            slated_for_removal.append(rule)
+    for slated in slated_for_removal:
+        rules.remove(slated)
     save_rules(rules)
 
 
