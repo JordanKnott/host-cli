@@ -9,7 +9,7 @@ def load_rules():
         rules = []
         for line in contents:
             if not line.startswith("#") and not line.strip() == "":
-                parts = line.split("\t")
+                print(parts)
                 rule = {
                         "ip" : parts[0].strip(),
                         "domain" : parts[1].strip()
